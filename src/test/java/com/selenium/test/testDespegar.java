@@ -59,27 +59,27 @@ public class testDespegar{
 		driver.findElement(aceptar).click(); wait.until(ExpectedConditions.elementToBeClickable(aceptar));
 		driver.findElement(cerrar).click(); wait.until(ExpectedConditions.elementToBeClickable(cerrar));
 	
-		driver.findElement(destino).click(); Thread.sleep(1000); 
-		driver.findElement(destino).sendKeys("Salta"); Thread.sleep(1000); 
-		driver.findElement(destino).sendKeys(Keys.CONTROL); Thread.sleep(1000); 
+		driver.findElement(destino).click(); wait.until(ExpectedConditions.elementToBeClickable(destino));
+		driver.findElement(destino).sendKeys("Salta"); wait.until(ExpectedConditions.visibilityOfElementLocated(destino));
+		driver.findElement(destino).sendKeys(Keys.CONTROL); 
 		driver.findElement(destino).sendKeys(Keys.ENTER); 
 		
 		driver.findElement(searchEntrada).click(); 
-		driver.findElement(searchEntrada).isDisplayed(); Thread.sleep(1000);
-		driver.findElement(fechaEntrada).click(); Thread.sleep(1000); 
-		driver.findElement(fechaSalida).click(); Thread.sleep(1000);
+		driver.findElement(searchEntrada).isDisplayed(); wait.until(ExpectedConditions.elementToBeClickable(searchEntrada));
+		driver.findElement(fechaEntrada).click(); 
+		driver.findElement(fechaSalida).click(); 
 		
-		driver.findElement(aceptarFecha).click(); Thread.sleep(1000);
-		driver.findElement(boxHabitaciones).click(); Thread.sleep(1000);
-		driver.findElement(selectAdultos).click(); Thread.sleep(1000);
-		driver.findElement(selectMenores).click(); Thread.sleep(1000);
-		Thread.sleep(1000);
+		driver.findElement(aceptarFecha).click(); wait.until(ExpectedConditions.elementToBeClickable(aceptarFecha));
+		driver.findElement(boxHabitaciones).click(); wait.until(ExpectedConditions.elementToBeClickable(boxHabitaciones));
+		driver.findElement(selectAdultos).click(); 
+		driver.findElement(selectMenores).click(); 
+	
 		
 		Select select = new Select (driver.findElement(By.xpath("//*[@id=\"component-modals\"]/div[5]/div/div/div[1]/div[2]/div[3]/div[2]/div/div/select")));
 		select.selectByIndex(2);
-		driver.findElement(aplicar).click(); Thread.sleep(1000);
-		driver.findElement(buscar).click(); Thread.sleep(2000);
-		driver.findElement(primerOpcion).click(); Thread.sleep(2000);
+		driver.findElement(aplicar).click(); wait.until(ExpectedConditions.visibilityOfElementLocated(aplicar));
+		driver.findElement(buscar).click(); wait.until(ExpectedConditions.visibilityOfElementLocated(buscar));
+		driver.findElement(primerOpcion).click(); wait.until(ExpectedConditions.visibilityOfElementLocated(primerOpcion));
 		
 	}
 	@AfterClass
