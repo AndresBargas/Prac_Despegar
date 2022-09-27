@@ -13,14 +13,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Test
-public class testDespegar{
+public class Test_Despegar{
 	
 	private WebDriver driver;
 	
@@ -41,7 +43,7 @@ public class testDespegar{
     By primerOpcion=By.xpath("/html/body/aloha-app-root/aloha-results/div/div/div/div[2]/div[2]/aloha-list-view-container/div[3]/div[1]/aloha-cluster-container");
 	By vActividades=By.xpath("/html/body/nav/div[2]/div/div[3]/ul/li[6]/a/div/i");
     
-    @BeforeClass 
+    @BeforeMethod 
 	public void setProp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Usuario\\drivers\\chromedriver.exe");
 		driver=new ChromeDriver();
@@ -49,7 +51,47 @@ public class testDespegar{
 		driver.get("https://www.despegar.com.ar/");
 			
 	}
-	public void tcDespegar() throws InterruptedException {
+    
+    public Test_Despegar(WebDriver driver) {
+    	this.driver=driver;
+    }
+    
+    public WebDriver chromeDriverConnection() {
+    	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Usuario\\drivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+		return driver;
+    }
+    
+    public WebElement findElement(By locator) {
+    	return driver.findElement(locator);
+    }
+    
+    public String getText(WebElement element) {
+    	return element.getText();
+    }
+    
+    public String getText(By locator) {
+    	return driver.findElement(locator).getText();
+    }
+    
+    public void ingresarTexto(String inputText,By locator) {
+    	driver.findElement(locator).sendKeys(inputText);
+    }
+    public void click(By locator) {
+    	driver.findElement(locator).click();
+    }
+    public Boolean isDisplayed(By locator) {
+    	try {
+    		return driver.findElement(locator).isDisplayed();
+    	}catch (org.openqa.selenium.NoSuchElementException e) {
+    		return false;
+    	}
+    }
+    public void visit(String url) {
+    	driver.get(url);
+    }
+    
+	/*public void tcDespegar() throws InterruptedException {
 	
 				
 		driver.findElement(alojamientos).click(); 
@@ -81,8 +123,8 @@ public class testDespegar{
 		driver.findElement(buscar).click(); wait.until(ExpectedConditions.visibilityOfElementLocated(buscar));
 		driver.findElement(primerOpcion).click(); wait.until(ExpectedConditions.visibilityOfElementLocated(primerOpcion));
 		
-	}
-	@AfterClass
+	}*/
+	@AfterMethod
 	
 	public void cierrePag() {
 		//driver.quit();
