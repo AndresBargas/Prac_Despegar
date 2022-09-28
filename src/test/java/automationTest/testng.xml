@@ -2,9 +2,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test name="Test">
+  	<groups>
+		<run>
+		 <include name="grupo_1"/>
+		</run>  	
+  	</groups>
     <classes>
       <class name="com.selenium.test.Alojamientos_Test"/>
-  
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
+
+

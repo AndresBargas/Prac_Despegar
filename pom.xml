@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Test_Auotmation</groupId>
+  <groupId>Test_Automation</groupId>
   <artifactId>Test_Automation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
@@ -26,6 +26,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.4.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
@@ -50,7 +51,7 @@
       		<version>2.12</version>
       		<configuration>
       			<suiteXmlFiles>
-      				<suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+      				<suiteXmlFile>src\test\java\automationTest\${suite}</suiteXmlFile>
       			</suiteXmlFiles>
       		</configuration>
       	</plugin>
