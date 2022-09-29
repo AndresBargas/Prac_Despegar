@@ -1,23 +1,28 @@
 package com.selenium.test;
 
 import org.testng.annotations.Test;
+
+import com.selenium.driver.DriverFactory;
+
 import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 
-public class Alojamientos_Test {
+public class Alojamientos_Test extends DriverFactory{
 	
   WebDriver driver=null;
   AlojamientosPage alojamientosPage=null;
  
   @BeforeMethod(alwaysRun=true)
-  public void setUp() throws Exception {
-	  
-	  System.setProperty("webdriver.chrome.driver","C:\\Users\\Usuario\\drivers\\chromedriver.exe");
-	  this.driver=new ChromeDriver();
-	  this.driver.get("https://www.despegar.com.ar/");
+  public void setUp(ITestContext context) throws Exception {
+	  String navegadorTestSuite=context.getCurrentXmlTest().getParameter("Navegador");
+	  String navegador=navegadorTestSuite !=null ? navegadorTestSuite:"CHROME";
+	  driver=DriverFactory.LevantarBrowser(navegador,"https://www.despegar.com.ar/");
+	  alojamientosPage = new AlojamientosPage(driver);
+	 
   }
 
   @AfterMethod(alwaysRun=true)
@@ -36,8 +41,8 @@ public class Alojamientos_Test {
 
   @Test(groups="grupo_1", dataProvider="data")
   public void alojamientos_test(String provincia) throws InterruptedException{
-
-	  alojamientosPage = new AlojamientosPage(this.driver);
+	 
+	
 	  alojamientosPage.cerrarSup();
 	  alojamientosPage.cerrarInf();
 	  alojamientosPage.clickAlojamientos();
